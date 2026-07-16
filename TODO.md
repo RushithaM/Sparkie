@@ -7,8 +7,6 @@ One task in **Now** at a time. Finished tasks move to **Done** with the date.
 ## Next
 
 - Package/distribute (electron-builder) when ready to ship
-- Avatar mood variety (more states, random idle animations)
-- Snooze button on bubble
 
 ## Later (v2 — do not build yet)
 
@@ -28,6 +26,8 @@ One task in **Now** at a time. Finished tasks move to **Done** with the date.
 - 2026-07-16 — Reminder engine (create/update/delete/getUpcoming/complete + 15s scheduler) + tests
 - 2026-07-16 — Speech bubble UI (Done/Dismiss)
 - 2026-07-16 — Settings: in-window panel (not separate window) + JSON persistence + tests
+- 2026-07-16 — Snooze 5m button on bubble (reuses update + notified_at reset)
+- 2026-07-16 — Avatar idle personality (CSS-only: tilt, squish, blinking eyes)
 
 ## Notes
 

@@ -1,7 +1,7 @@
 import type { AvatarState } from './stateMachine'
 
 const bodyAnim: Record<AvatarState, string> = {
-  idle: 'animate-breathe',
+  idle: 'animate-idle-life',
   wave: 'animate-wiggle',
   happy: 'animate-bounce-big',
   sleep: 'animate-breathe-slow'
@@ -47,7 +47,7 @@ function Eye({ closed }: { closed: boolean }) {
   return closed ? (
     <div className="mt-2 h-1 w-5 rounded-full bg-orange-900" />
   ) : (
-    <div className="h-5 w-5 rounded-full bg-orange-950">
+    <div className="animate-blink h-5 w-5 rounded-full bg-orange-950">
       <div className="ml-1 mt-1 h-1.5 w-1.5 rounded-full bg-white" />
     </div>
   )

@@ -80,7 +80,10 @@ function runSmokeTest(win: BrowserWindow, reminders: ReminderService): void {
         )
         if (found) {
           const shot = process.env['SMOKE_SHOT']
-          if (shot) writeFileSync(shot, (await win.capturePage()).toPNG())
+          if (shot) {
+            await new Promise((r) => setTimeout(r, 300)) // let compositor paint before capture
+            writeFileSync(shot, (await win.capturePage()).toPNG())
+          }
           console.log('SMOKE_OK tray=' + Boolean(tray))
           app.exit(0)
         }

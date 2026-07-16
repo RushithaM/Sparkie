@@ -78,6 +78,53 @@ body,
   animation: breathe 3s ease-in-out infinite;
 }
 
+/* idle with personality: breathing, a curious tilt, a little squish */
+@keyframes idle-life {
+  0%,
+  20%,
+  40%,
+  60%,
+  100% {
+    transform: scale(1);
+  }
+  10%,
+  30%,
+  75% {
+    transform: scale(1.04);
+  }
+  46% {
+    transform: rotate(-5deg) scale(1.01);
+  }
+  54% {
+    transform: rotate(5deg) scale(1.01);
+  }
+  88% {
+    transform: scale(1.03, 0.95);
+  }
+  94% {
+    transform: scale(0.99, 1.03);
+  }
+}
+
+.animate-idle-life {
+  animation: idle-life 10s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%,
+  93%,
+  100% {
+    transform: scaleY(1);
+  }
+  96% {
+    transform: scaleY(0.1);
+  }
+}
+
+.animate-blink {
+  animation: blink 4.2s infinite;
+}
+
 .animate-breathe-slow {
   animation: breathe 5s ease-in-out infinite;
 }

@@ -31,10 +31,22 @@ export default function App() {
     dispatch('interact')
   }
 
+  const snooze = async () => {
+    if (!due) return
+    // update() clears notified_at, so the scheduler re-fires it in 5 minutes
+    await window.sparkie.reminders.update(due.id, {
+      dueAt: new Date(Date.now() + 5 * 60_000).toISOString()
+    })
+    setDue(null)
+    dispatch('interact')
+  }
+
   return (
     <div className="drag flex h-screen flex-col items-center justify-end gap-3 pb-6">
       {panelOpen && <SettingsPanel onReminderCompleted={() => dispatch('reminder-completed')} />}
-      {due && !panelOpen && <Bubble reminder={due} onComplete={complete} onDismiss={dismiss} />}
+      {due && !panelOpen && (
+        <Bubble reminder={due} onComplete={complete} onSnooze={snooze} onDismiss={dismiss} />
+      )}
       <Avatar state={avatarState} onClick={() => dispatch('interact')} />
       <button
         onClick={() => setPanelOpen((o) => !o)}

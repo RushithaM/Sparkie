@@ -3,10 +3,12 @@ import type { Reminder } from '../../../shared/types'
 export function Bubble({
   reminder,
   onComplete,
+  onSnooze,
   onDismiss
 }: {
   reminder: Reminder
   onComplete: () => void
+  onSnooze: () => void
   onDismiss: () => void
 }) {
   return (
@@ -19,6 +21,12 @@ export function Bubble({
           className="rounded-lg bg-emerald-500 px-3 py-1 text-xs font-semibold text-white hover:bg-emerald-600"
         >
           Done
+        </button>
+        <button
+          onClick={onSnooze}
+          className="rounded-lg bg-sky-500 px-3 py-1 text-xs font-semibold text-white hover:bg-sky-600"
+        >
+          Snooze 5m
         </button>
         <button
           onClick={onDismiss}
