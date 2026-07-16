@@ -1,24 +1,21 @@
-import { useCallback, useEffect, useState } from 'react'
-import { next, type AvatarEvent, type AvatarState } from './stateMachine'
+import { useEffect, useRef, useState } from 'react'
+import { AvatarEngine } from './engine'
+import type { AvatarManifest } from './manifest'
 
-const ANIMATION_MS = 2500
-const SLEEP_AFTER_MS = 60_000
-
-export function useAvatar(): [AvatarState, (e: AvatarEvent) => void] {
-  const [state, setState] = useState<AvatarState>('idle')
-  const dispatch = useCallback((e: AvatarEvent) => setState((s) => next(s, e)), [])
+export function useAvatar(manifest: AvatarManifest): { anim: string; engine: AvatarEngine } {
+  const ref = useRef<AvatarEngine | null>(null)
+  if (!ref.current) ref.current = new AvatarEngine(manifest)
+  const engine = ref.current
+  const [anim, setAnim] = useState(engine.current)
 
   useEffect(() => {
-    if (state === 'wave' || state === 'happy') {
-      const t = setTimeout(() => dispatch('animation-done'), ANIMATION_MS)
-      return () => clearTimeout(t)
+    const off = engine.onChange(setAnim)
+    engine.start()
+    return () => {
+      off()
+      engine.stop()
     }
-    if (state === 'idle') {
-      const t = setTimeout(() => dispatch('idle-timeout'), SLEEP_AFTER_MS)
-      return () => clearTimeout(t)
-    }
-    return undefined
-  }, [state, dispatch])
+  }, [engine])
 
-  return [state, dispatch]
+  return { anim, engine }
 }

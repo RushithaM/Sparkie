@@ -16,49 +16,41 @@ body,
   -webkit-app-region: no-drag;
 }
 
-@keyframes breathe {
+/* sprite strip player: steps() marches background-position across the strip */
+@keyframes sprite-play {
+  to {
+    background-position-x: var(--strip-end);
+  }
+}
+
+/* no-op animation: gives 1-frame animations an onAnimationEnd for timing */
+@keyframes sprite-hold {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* effects: motion overlay for low-frame animations */
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes squash {
   0%,
   100% {
     transform: scale(1);
   }
   50% {
-    transform: scale(1.04);
-  }
-}
-
-@keyframes wiggle {
-  0%,
-  100% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(-6deg);
-  }
-  75% {
-    transform: rotate(6deg);
-  }
-}
-
-@keyframes bounce-big {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-22px);
-  }
-  60% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes wave-hand {
-  0%,
-  100% {
-    transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(24deg);
+    transform: scale(1.03, 0.96);
   }
 }
 
@@ -74,71 +66,12 @@ body,
   }
 }
 
-.animate-breathe {
-  animation: breathe 3s ease-in-out infinite;
+.animate-bob {
+  animation: bob 2s ease-in-out infinite;
 }
 
-/* idle with personality: breathing, a curious tilt, a little squish */
-@keyframes idle-life {
-  0%,
-  20%,
-  40%,
-  60%,
-  100% {
-    transform: scale(1);
-  }
-  10%,
-  30%,
-  75% {
-    transform: scale(1.04);
-  }
-  46% {
-    transform: rotate(-5deg) scale(1.01);
-  }
-  54% {
-    transform: rotate(5deg) scale(1.01);
-  }
-  88% {
-    transform: scale(1.03, 0.95);
-  }
-  94% {
-    transform: scale(0.99, 1.03);
-  }
-}
-
-.animate-idle-life {
-  animation: idle-life 10s ease-in-out infinite;
-}
-
-@keyframes blink {
-  0%,
-  93%,
-  100% {
-    transform: scaleY(1);
-  }
-  96% {
-    transform: scaleY(0.1);
-  }
-}
-
-.animate-blink {
-  animation: blink 4.2s infinite;
-}
-
-.animate-breathe-slow {
-  animation: breathe 5s ease-in-out infinite;
-}
-
-.animate-wiggle {
-  animation: wiggle 0.5s ease-in-out infinite;
-}
-
-.animate-bounce-big {
-  animation: bounce-big 0.7s ease-in-out infinite;
-}
-
-.animate-wave {
-  animation: wave-hand 0.5s ease-in-out infinite;
+.animate-squash {
+  animation: squash 2s ease-in-out infinite;
 }
 
 .animate-float {

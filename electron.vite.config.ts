@@ -10,6 +10,7 @@ export default defineConfig({
     plugins: [externalizeDepsPlugin()]
   },
   renderer: {
+    publicDir: '../../assets', // avatar packs served at /avatars, copied into the build
     plugins: [react(), tailwindcss()]
   }
 })

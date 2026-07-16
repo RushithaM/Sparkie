@@ -4,9 +4,14 @@ One task in **Now** at a time. Finished tasks move to **Done** with the date.
 
 ## Now
 
+- Waiting on real cat art: drop reference sheet at `assets/reference/cat-sheet.png`,
+  then run `python3 scripts/slice_sheet.py assets/reference/cat-sheet.png`
+
 ## Next
 
 - Package/distribute (electron-builder) when ready to ship
+- Avatar pack picker in settings (packs already swappable by folder)
+- Screen-roaming walk (window.setPosition), look-at-cursor
 
 ## Later (v2 — do not build yet)
 
@@ -28,6 +33,7 @@ One task in **Now** at a time. Finished tasks move to **Done** with the date.
 - 2026-07-16 — Settings: in-window panel (not separate window) + JSON persistence + tests
 - 2026-07-16 — Snooze 5m button on bubble (reuses update + notified_at reset)
 - 2026-07-16 — Avatar idle personality (CSS-only: tilt, squish, blinking eyes)
+- 2026-07-16 — Avatar system: manifest-driven packs, AvatarEngine + 9 tests, steps() sprite player, placeholder cat pack (docs/avatar-system.md)
 
 ## Notes
 
