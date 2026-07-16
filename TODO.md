@@ -4,9 +4,6 @@ One task in **Now** at a time. Finished tasks move to **Done** with the date.
 
 ## Now
 
-- Waiting on real cat art: drop reference sheet at `assets/reference/cat-sheet.png`,
-  then run `python3 scripts/slice_sheet.py assets/reference/cat-sheet.png`
-
 ## Next
 
 - Package/distribute (electron-builder) when ready to ship

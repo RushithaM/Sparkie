@@ -18,14 +18,14 @@ MARGIN = 12
 # row2: Sit SitHappy LyingDown Sleeping | Happy Excited Thinking Sad
 # row3: Waving PawUp Jump Stretch | Happy2 Curious Sad2 Angry
 MAPPING = {
-    'idle': [0, 0, 0, 1],       # mostly Idle1, occasional Idle2 = built-in blink feel
+    'idle': [0, 0, 0, 0, 0, 0, 0, 1],  # Idle1 x7 + Idle2(eyes closed) = blink every ~4s at 2fps
     'look-around': [2],
     'blink': [3],
     'walk': [4, 5, 6],
     'sit': [7],
-    'happy': [11, 8],           # Happy + Sit(Happy)
+    'happy': [8],               # Sit(Happy) — full-body, consistent crop with the rest
     'sleep': [9, 10],           # LyingDown + Sleeping
-    'celebrate': [12, 17],      # Excited + Jump
+    'celebrate': [17],          # Jump (Excited is a bust crop — pops if mixed)
     'thinking': [13],
     'sad': [14],
     'wave': [15, 16],           # Waving + PawUp
@@ -50,6 +50,33 @@ def bands(mask, axis, min_size, min_count):
     return runs
 
 
+def key_background(region, bg):
+    # Remove only background CONNECTED to the cell border (flood fill), so dark
+    # interior details (eyes, nose) that happen to match the bg color survive.
+    dist = np.abs(region[:, :, :3] - bg).sum(axis=2)
+    bgish = dist < 100
+    reach = np.zeros_like(bgish)
+    reach[0, :], reach[-1, :] = bgish[0, :], bgish[-1, :]
+    reach[:, 0] |= bgish[:, 0]
+    reach[:, -1] |= bgish[:, -1]
+    while True:
+        grown = reach.copy()
+        grown[1:, :] |= reach[:-1, :]
+        grown[:-1, :] |= reach[1:, :]
+        grown[:, 1:] |= reach[:, :-1]
+        grown[:, :-1] |= reach[:, 1:]
+        grown &= bgish
+        if (grown == reach).all():
+            break
+        reach = grown
+    alpha = np.where(reach, 0, 255).astype(float)
+    pad = np.pad(alpha, 1, mode='edge')  # 3x3 blur = 1px soft edge
+    alpha = sum(
+        pad[dy : dy + alpha.shape[0], dx : dx + alpha.shape[1]] for dy in range(3) for dx in range(3)
+    ) / 9
+    return alpha
+
+
 def main(sheet_path):
     img = Image.open(sheet_path).convert('RGBA')
     px = np.asarray(img).astype(int)
@@ -66,9 +93,8 @@ def main(sheet_path):
     sprites = []
     for x0, y0, x1, y1 in cells:
         region = px[y0:y1, x0:x1]
-        alpha = np.clip((np.abs(region[:, :, :3] - bg).sum(axis=2) - 60) * 2, 0, 255)
         rgba = region.copy()
-        rgba[:, :, 3] = alpha
+        rgba[:, :, 3] = key_background(region, bg)
         sprite = Image.fromarray(rgba.astype(np.uint8))
         sprite = sprite.crop(sprite.getbbox())
         scale = min((FRAME - 2 * MARGIN) / sprite.width, (FRAME - 2 * MARGIN) / sprite.height)
