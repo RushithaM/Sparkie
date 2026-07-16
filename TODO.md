@@ -4,9 +4,9 @@ One task in **Now** at a time. Finished tasks move to **Done** with the date.
 
 ## Now
 
-## Next
-
 - Package/distribute (electron-builder) when ready to ship
+
+## Next
 - Avatar pack picker in settings (packs already swappable by folder)
 - Screen-roaming walk (window.setPosition), look-at-cursor
 
@@ -31,6 +31,7 @@ One task in **Now** at a time. Finished tasks move to **Done** with the date.
 - 2026-07-16 — Snooze 5m button on bubble (reuses update + notified_at reset)
 - 2026-07-16 — Avatar idle personality (CSS-only: tilt, squish, blinking eyes)
 - 2026-07-16 — Avatar system: manifest-driven packs, AvatarEngine + 9 tests, steps() sprite player, placeholder cat pack (docs/avatar-system.md)
+- 2026-07-17 — Reminder count badge on avatar head (persists through sleep); snooze puts cat to sleep + transient "Snoozed 5m" pill
 
 ## Notes
 
