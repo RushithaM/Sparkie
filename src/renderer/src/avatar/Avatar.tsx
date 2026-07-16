@@ -23,9 +23,6 @@ export function Avatar({
       style={{ width: w * SCALE, height: h * SCALE }}
       onClick={onClick}
     >
-      {anim === 'sleep' && (
-        <div className="absolute -top-4 right-2 z-10 text-2xl text-sky-300 animate-float select-none">z z</div>
-      )}
       <div style={{ width: w, height: h, transform: `scale(${SCALE})`, transformOrigin: 'top left' }}>
         <div
           key={anim}

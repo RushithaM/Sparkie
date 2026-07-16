@@ -8,7 +8,7 @@
     "walk-left": { "file": "walk.png", "frames": 3, "fps": 6, "loop": true },
     "walk-right": { "file": "walk.png", "frames": 3, "fps": 6, "loop": true, "mirror": true },
     "sit": { "file": "sit.png", "frames": 1, "fps": 1, "loop": true, "effect": "bob" },
-    "sleep": { "file": "sleep.png", "frames": 2, "fps": 1, "loop": true },
+    "sleep": { "file": "sleep.png", "frames": 1, "fps": 1, "loop": true, "effect": "breathe" },
     "stretch": { "file": "stretch.png", "frames": 1, "fps": 1, "loop": false, "next": "idle" },
     "happy": { "file": "happy.png", "frames": 1, "fps": 0.7, "loop": false, "next": "idle", "effect": "squash" },
     "sad": { "file": "sad.png", "frames": 1, "fps": 1, "loop": true, "effect": "bob" },

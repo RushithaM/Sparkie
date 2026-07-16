@@ -5,7 +5,7 @@ export interface AnimationDef {
   loop: boolean
   next?: string
   mirror?: boolean
-  effect?: 'bob' | 'squash' | 'float'
+  effect?: 'bob' | 'squash' | 'float' | 'breathe'
 }
 
 export interface IdleAction {

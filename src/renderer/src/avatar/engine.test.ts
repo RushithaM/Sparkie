@@ -9,7 +9,7 @@ const manifest: AvatarManifest = {
     idle: { file: 'idle.png', frames: 2, fps: 2, loop: true },
     blink: { file: 'blink.png', frames: 1, fps: 6, loop: false, next: 'idle' },
     sit: { file: 'sit.png', frames: 1, fps: 1, loop: true },
-    sleep: { file: 'sleep.png', frames: 2, fps: 1, loop: true },
+    sleep: { file: 'sleep.png', frames: 1, fps: 1, loop: true, effect: 'breathe' },
     happy: { file: 'happy.png', frames: 2, fps: 3, loop: false, next: 'idle' },
     wave: { file: 'wave.png', frames: 2, fps: 4, loop: true },
     celebrate: { file: 'celebrate.png', frames: 2, fps: 3, loop: false, next: 'idle' }

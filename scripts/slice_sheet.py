@@ -24,7 +24,7 @@ MAPPING = {
     'walk': [4, 5, 6],
     'sit': [7],
     'happy': [8],               # Sit(Happy) — full-body, consistent crop with the rest
-    'sleep': [9, 10],           # LyingDown + Sleeping
+    'sleep': [10],              # Sleeping (ZZZ baked in; LyingDown omitted — breathing effect instead)
     'celebrate': [17],          # Jump (Excited is a bust crop — pops if mixed)
     'thinking': [13],
     'sad': [14],

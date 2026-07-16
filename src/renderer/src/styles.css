@@ -66,6 +66,16 @@ body,
   }
 }
 
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02, 0.98);
+  }
+}
+
 .animate-bob {
   animation: bob 2s ease-in-out infinite;
 }
@@ -76,4 +86,8 @@ body,
 
 .animate-float {
   animation: float 2s ease-in-out infinite;
+}
+
+.animate-breathe {
+  animation: breathe 3s ease-in-out infinite;
 }
