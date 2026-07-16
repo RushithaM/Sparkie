@@ -1,22 +1,13 @@
 import { useEffect, useState, type FormEvent } from 'react'
 import type { Reminder, Settings } from '../../../shared/types'
 
-export function SettingsPanel({
-  onReminderCompleted,
-  onRemindersChanged
-}: {
-  onReminderCompleted: () => void
-  onRemindersChanged: () => void
-}) {
+export function SettingsPanel({ onReminderCompleted }: { onReminderCompleted: () => void }) {
   const [upcoming, setUpcoming] = useState<Reminder[]>([])
   const [settings, setSettings] = useState<Settings | null>(null)
   const [title, setTitle] = useState('')
   const [dueAt, setDueAt] = useState('')
 
-  const refresh = () => {
-    window.sparkie.reminders.getUpcoming().then(setUpcoming)
-    onRemindersChanged()
-  }
+  const refresh = () => window.sparkie.reminders.getUpcoming().then(setUpcoming)
 
   useEffect(() => {
     refresh()

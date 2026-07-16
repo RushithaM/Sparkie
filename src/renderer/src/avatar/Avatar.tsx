@@ -5,13 +5,11 @@ const SCALE = 0.6
 export function Avatar({
   manifest,
   anim,
-  badge = 0,
   onClick,
   onEnded
 }: {
   manifest: AvatarManifest
   anim: string
-  badge?: number
   onClick: () => void
   onEnded: () => void
 }) {
@@ -25,11 +23,6 @@ export function Avatar({
       style={{ width: w * SCALE, height: h * SCALE }}
       onClick={onClick}
     >
-      {badge > 0 && (
-        <span className="absolute -top-1 -right-1 z-10 flex h-5 min-w-5 items-center justify-center rounded-full bg-orange-500 px-1 text-[11px] font-bold text-white shadow">
-          {badge > 99 ? '99+' : badge}
-        </span>
-      )}
       <div style={{ width: w, height: h, transform: `scale(${SCALE})`, transformOrigin: 'top left' }}>
         <div
           key={anim}
